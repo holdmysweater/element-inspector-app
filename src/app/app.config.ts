@@ -1,3 +1,5 @@
+import { provideEventPlugins } from "@taiga-ui/event-plugins";
+import { provideAnimations } from "@angular/platform-browser/animations";
 import {
   ApplicationConfig,
   isDevMode,
@@ -12,8 +14,7 @@ import { TranslocoHttpLoader } from './transloco-loader';
 import { provideTransloco } from '@jsverse/transloco';
 
 export const appConfig: ApplicationConfig = {
-  providers: [
-    provideBrowserGlobalErrorListeners(),
+  providers: [provideAnimations(), provideBrowserGlobalErrorListeners(),
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes), provideHttpClient(), provideTransloco({
       config: {
@@ -23,6 +24,5 @@ export const appConfig: ApplicationConfig = {
         prodMode: !isDevMode(),
       },
       loader: TranslocoHttpLoader
-    })
-  ]
+    }), provideEventPlugins()]
 };
