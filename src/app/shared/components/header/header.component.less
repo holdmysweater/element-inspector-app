@@ -2,11 +2,25 @@
 
 .header-container {
   .container-space-between();
-  padding: @size-padding-large;
+  align-items: center;
   background-color: @background-color;
-  border-bottom: @highlight-color solid 1px;
+  padding: 0 @size-padding-large;
 
-  h1 {
+  & h1 {
+    .container-centered();
+    width: 350px;
     margin: 0;
+    padding: @size-padding-large;
+  }
+
+  & app-language-settings {
+    .container-end();
+    width: 350px;
+    padding: 0 @size-padding-large;
+  }
+
+  & app-nav-tabs {
+    width: 350px;
+    align-self: end;
   }
 }

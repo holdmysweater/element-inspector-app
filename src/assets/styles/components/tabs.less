@@ -1,0 +1,35 @@
+@import "../variables.less";
+
+app-nav-tabs {
+  tui-tabs {
+    height: 45px !important;
+    font-size: @font-size-normal;
+    --t-color: @highlight-color !important;
+    box-shadow: none;
+  }
+
+  [tuiTab] {
+    min-width: 160px;
+    color: @highlight-color-dark !important;
+    background-color: @highlight-color-light !important;
+    border: solid @highlight-color 1px;
+    border-radius: 20px 20px 0 0;
+    border-bottom: none;
+    padding: 0 !important;
+    margin-left: 0;
+    justify-content: center;
+
+    &:hover {
+      color: @background-color !important;
+      background-color: @highlight-color !important;
+    }
+  }
+
+  [tuiTab]._active {
+    color: @secondary-color-dark !important;
+    background: @highlight-color-medium !important;
+    border-color: @highlight-color-light !important;
+    border-bottom: @highlight-color-light 5px !important;
+    font-weight: bold !important;
+  }
+}
