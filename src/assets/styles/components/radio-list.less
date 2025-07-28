@@ -1,0 +1,23 @@
+@import '../variables.less';
+
+app-language-settings {
+  tui-radio-list {
+    flex-direction: row !important;
+    width: max-content;
+    text-transform: uppercase;
+    gap: 16px;
+
+    & label {
+      color: @secondary-color;
+      font-size: @font-size-normal;
+    }
+
+    & input[data-appearance=primary] {
+      background: @highlight-color !important;
+    }
+
+    & input[data-appearance=outline-grayscale] {
+      background: @highlight-color-light !important;
+    }
+  }
+}
