@@ -1,8 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { EditTableComponent } from '../edit-table/edit-table.component';
 import { CreatePopupComponent } from '../create-popup/create-popup.component';
 import { TuiButton, tuiDialog, TuiIcon } from '@taiga-ui/core';
 import { TranslocoDirective } from '@jsverse/transloco';
+import { ElementsService } from '../../../shared/services/elements.service';
+import { ElementObjectBase } from '../../../shared/models/element.interface';
 
 @Component({
   selector: 'app-edit-page',
@@ -16,6 +18,7 @@ import { TranslocoDirective } from '@jsverse/transloco';
   styleUrl: './edit-page.component.less'
 })
 export class EditPageComponent {
+  private readonly elementsService = inject(ElementsService);
 
   // region FORM DIALOG
 
@@ -26,7 +29,12 @@ export class EditPageComponent {
   });
 
   protected showFormDialog(): void {
-    this.popupCreate().subscribe();
+    this.popupCreate().subscribe({
+      next: (data: ElementObjectBase | null) => {
+        if (data === null) return;
+        this.elementsService.create(data);
+      }
+    });
   }
 
   // endregion

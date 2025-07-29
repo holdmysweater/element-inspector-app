@@ -1,0 +1,19 @@
+@import "../../../../assets/styles/mixins.less";
+
+.page-container {
+  .container-column();
+  flex: 2;
+  justify-content: space-between;
+  padding: @size-padding-large;
+  border-radius: @size-padding;
+  min-height: 0;
+
+  app-edit-table {
+    flex: 2;
+    background-color: @background-color;
+    min-height: 0;
+    overflow: hidden;
+    margin-top: @size-padding-large;
+    border-radius: @size-padding;
+  }
+}

@@ -1,8 +1,9 @@
 <ng-container *transloco="let t">
-  <div class="container-centered">
+  <div class="page-container">
     <button
       tuiButton
       type="button"
+      [size]="'m'"
       (click)="showFormDialog()"
     >
       {{ t('actions.create') }}

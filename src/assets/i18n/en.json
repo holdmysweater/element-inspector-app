@@ -21,9 +21,12 @@
   "actions": {
     "cancel": "Cancel",
     "create": "Create",
-    "save": "Save"
+    "save": "Save",
+    "duplicate": "Duplicate",
+    "delete": "Delete"
   },
   "errors": {
-    "required": "This field is required"
+    "required": "This field is required",
+    "not-found": "No data found"
   }
 }

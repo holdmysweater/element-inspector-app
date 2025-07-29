@@ -3,6 +3,7 @@
 .container {
   margin: auto;
   max-width: @max-width;
+  min-height: 0;
   height: @max-height;
   display: flex;
   align-items: stretch;
@@ -63,6 +64,10 @@
 
 .gap {
   gap: @size-padding;
+}
+
+.gap-small {
+  gap: @size-padding-small;
 }
 
 .gap-large {

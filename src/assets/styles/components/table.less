@@ -1,0 +1,41 @@
+@import "../variables.less";
+
+app-edit-table,
+app-view-table {
+  table {
+    width: 100%;
+    align-self: start;
+    table-layout: fixed;
+  }
+
+  [tuiTable][data-size='s'] [tuiTitle] {
+    flex-direction: row;
+    gap: 0.375rem;
+    font-weight: normal;
+  }
+
+  [tuiTh], [tuiTd] {
+    background: none;
+    border-inline-start: none;
+    border-inline-end: none;
+    font-weight: normal;
+    font-size: @font-size-small !important;
+    padding: @size-padding-small @size-padding-large !important;
+    overflow: auto;
+    text-overflow: clip;
+  }
+
+  [tuiTh] {
+    position: sticky;
+    border-top: none;
+    font-size: @font-size-normal !important;
+    background: @highlight-color-light;
+    color: @highlight-color-dark;
+    font-weight: bold;
+    padding: @size-padding @size-padding-large !important;
+  }
+}
+
+
+
+
