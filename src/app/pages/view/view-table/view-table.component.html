@@ -1,0 +1,57 @@
+<ng-container *transloco="let t">
+  <div class="table-container">
+    @if (elements().length > 0) {
+      <table
+        tuiTable
+        [size]="'m'"
+      >
+        <thead>
+        <tr>
+          <th tuiTh>
+            {{ t('element.name') }}
+          </th>
+          <th tuiTh>
+            {{ t('element.creation-date') }}
+          </th>
+          <th tuiTh>
+            {{ t('element.due-date') }}
+          </th>
+          <th tuiTh></th>
+        </tr>
+        </thead>
+        <tbody tuiTbody>
+          @for (element of elements(); track element.id) {
+            <tr>
+              <td tuiTd>
+                {{ element.name }}
+              </td>
+              <td tuiTd>
+                {{ element.creationDate | date:'d/MM/y, HH:mm' }}
+              </td>
+              <td tuiTd>
+                {{ element.dueDate | date:'d/MM/y, HH:mm' }}
+              </td>
+              <td tuiTd>
+                <div class="table-buttons">
+                  <button
+                    tuiButton
+                    type="button"
+                    appearance="primary"
+                    (click)="showViewDialog(element)"
+                  >
+                    {{ t('actions.view') }}
+                    <tui-icon
+                      icon="@tui.eye"
+                    />
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    } @else {
+      <p>{{ t('errors.not-found') }}</p>
+    }
+  </div>
+</ng-container>

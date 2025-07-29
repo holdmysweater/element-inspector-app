@@ -1,0 +1,31 @@
+@import "../../../../assets/styles/mixins.less";
+
+.table-container {
+  .container-centered();
+  overflow: auto;
+
+  .table-buttons {
+    .container-end();
+    .gap-small();
+
+    & > :first-child {
+      background-color: @highlight-color;
+
+      &:hover {
+        background-color: @highlight-color-dark;
+      }
+    }
+  }
+
+  table th:last-child,
+  table td:last-child {
+    width: 200px;
+  }
+
+  table th:nth-last-child(2),
+  table th:nth-last-child(3),
+  table td:nth-last-child(2),
+  table td:nth-last-child(3) {
+    width: 225px;
+  }
+}

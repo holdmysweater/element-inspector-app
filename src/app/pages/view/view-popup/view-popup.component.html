@@ -1,0 +1,37 @@
+<ng-container *transloco="let t">
+  <div class="dialog-container">
+    <h2>{{ element.name }}</h2>
+
+    <div class="container-column gap-large">
+      <div class="container-column gap">
+        <div class="container-space-between">
+          <div class="container-column">
+            <h5>{{ t('element.creation-date') }}</h5>
+            <p>{{ element.creationDate | date:'d/MM/y, HH:mm' }}</p>
+          </div>
+          <div class="container-column">
+            <h5>{{ t('element.due-date') }}</h5>
+            <p>{{ element!.dueDate | date:'d/MM/y, HH:mm' }}</p>
+          </div>
+        </div>
+
+        <div class="container-column">
+          <h5>{{ t('element.description') }}</h5>
+          <p>{{ element!.description }}</p>
+        </div>
+      </div>
+
+      <div class="container-end gap">
+        <button
+          type="button"
+          [size]="'m'"
+          appearance="flat-destructive"
+          tuiButton
+          (click)="closeDialog()"
+        >
+          {{ t('actions.close') }}
+        </button>
+      </div>
+    </div>
+  </div>
+</ng-container>

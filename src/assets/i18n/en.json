@@ -3,12 +3,19 @@
   "element": {
     "name": "Name",
     "creation-date": "Creation date",
-    "due-date": "Due date and time",
+    "due-date": "Due date",
     "description": "Description"
   },
   "pages": {
     "view": {
-      "title": "View"
+      "title": "View",
+      "table": {
+        "columns": {
+          "name": "Name",
+          "creation-date": "Creation date and time",
+          "due-date": "Due date and time"
+        }
+      }
     },
     "edit": {
       "title": "Edit",
@@ -20,10 +27,12 @@
   },
   "actions": {
     "cancel": "Cancel",
+    "close": "Close",
     "create": "Create",
     "save": "Save",
     "duplicate": "Duplicate",
-    "delete": "Delete"
+    "delete": "Delete",
+    "view": "View"
   },
   "errors": {
     "required": "This field is required",
