@@ -1,0 +1,87 @@
+<ng-container *transloco="let t">
+  <div class="dialog-container">
+    <h2>{{ t('pages.edit.popup-create.title') }}</h2>
+
+    <form
+      [formGroup]="elementBaseForm"
+      (ngSubmit)="onSubmit()"
+    >
+      <div class="container-column gap-large">
+        <div class="container-column gap">
+          <div class="container-column">
+            <tui-textfield>
+              <label
+                for="name"
+                tuiLabel
+              >
+                {{ t('element.name') }}
+              </label>
+              <input
+                id="name"
+                formControlName="name"
+                tuiTextfield
+              />
+            </tui-textfield>
+            <tui-error
+              formControlName="name"
+              [error]="[] | tuiFieldError | async"
+            />
+          </div>
+
+          <div class="container-column">
+            <tui-textfield>
+              <label tuiLabel>{{ t('element.due-date') }}</label>
+              <input
+                tuiInputDateTime
+                formControlName="dueDate"
+                [min]="this.minDate"
+              />
+              <tui-calendar *tuiTextfieldDropdown/>
+            </tui-textfield>
+            <tui-error
+              formControlName="dueDate"
+              [error]="[] | tuiFieldError | async"
+            />
+          </div>
+
+          <div class="container-column">
+            <tui-textfield>
+              <label tuiLabel>{{ t('element.description') }}</label>
+              <textarea
+                placeholder="{{ t('pages.edit.popup-create.description-placeholder') }}"
+                tuiTextarea
+                formControlName="description"
+              ></textarea>
+            </tui-textfield>
+            <tui-error
+              formControlName="description"
+              [error]="[] | tuiFieldError | async"
+            />
+          </div>
+        </div>
+
+        <div class="container-end gap">
+          <button
+            type="button"
+            [size]="'m'"
+            appearance="flat-destructive"
+            tuiButton
+            (click)="closeDialog()"
+          >
+            {{ t('actions.cancel') }}
+          </button>
+
+          <button
+            type="submit"
+            [disabled]="!elementBaseForm.valid"
+            [size]="'m'"
+            appearance="primary"
+            tuiButton
+          >
+            {{ t('actions.create') }}
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</ng-container>

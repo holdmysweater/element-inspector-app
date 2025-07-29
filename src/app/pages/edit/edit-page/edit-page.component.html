@@ -1,1 +1,15 @@
-<p>edit-page works!</p>
+<ng-container *transloco="let t">
+  <div class="container-centered">
+    <button
+      tuiButton
+      type="button"
+      (click)="showFormDialog()"
+    >
+      {{ t('actions.create') }}
+      <tui-icon
+        icon="@tui.plus"
+      />
+    </button>
+    <app-edit-table/>
+  </div>
+</ng-container>

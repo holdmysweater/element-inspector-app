@@ -1,7 +1,29 @@
 {
   "title": "Element Inspector",
+  "element": {
+    "name": "Name",
+    "creation-date": "Creation date",
+    "due-date": "Due date and time",
+    "description": "Description"
+  },
   "pages": {
-    "view": "View",
-    "edit": "Edit"
+    "view": {
+      "title": "View"
+    },
+    "edit": {
+      "title": "Edit",
+      "popup-create": {
+        "title": "Create a new element",
+        "description-placeholder": "Describe the element..."
+      }
+    }
+  },
+  "actions": {
+    "cancel": "Cancel",
+    "create": "Create",
+    "save": "Save"
+  },
+  "errors": {
+    "required": "This field is required"
   }
 }

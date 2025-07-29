@@ -16,7 +16,7 @@ import { translateSignal } from '@jsverse/transloco';
 })
 export class NavTabsComponent {
   protected readonly tabs = [
-    { url: 'view', label: translateSignal('pages.view') },
-    { url: 'edit', label: translateSignal('pages.edit') }
+    { url: 'view', label: translateSignal('pages.view.title') },
+    { url: 'edit', label: translateSignal('pages.edit.title') }
   ];
 }
