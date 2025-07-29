@@ -27,7 +27,12 @@
     "save": "Save",
     "duplicate": "Duplicate",
     "delete": "Delete",
-    "view": "View"
+    "view": "View",
+    "move": {
+      "option": "Move",
+      "up": "Move up",
+      "down": "Move down"
+    }
   },
   "errors": {
     "required": "This field is required",

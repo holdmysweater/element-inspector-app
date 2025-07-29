@@ -16,6 +16,7 @@
           <th tuiTh>
             {{ t('element.due-date-full') }}
           </th>
+          <th tuiTh></th>
         </tr>
         </thead>
         <tbody tuiTbody>
@@ -29,6 +30,51 @@
               </td>
               <td tuiTd>
                 {{ element.dueDate | date:'d/MM/y, HH:mm' }}
+              </td>
+              <td tuiTd>
+                <button
+                  tuiButton
+                  iconEnd="@tui.chevron-right"
+                  tuiDropdownAlign="right"
+                  type="button"
+                  [disabled]="!canMoveUp(element.id) && !canMoveDown(element.id)"
+                  [size]="'m'"
+                  [tuiDropdown]="dropdownContent"
+                  [tuiDropdownSided]="true"
+                  [tuiDropdownManual]="openStates.get(element.id) || false"
+                  [tuiObscuredEnabled]="openStates.get(element.id) || false"
+                  (click)="onDropdownClick(element.id); $event.stopPropagation()"
+                  (tuiActiveZoneChange)="onActiveZone(element.id, $event)"
+                  (tuiObscured)="onObscured(element.id, $event)"
+                >
+                  {{ t('actions.move.option') }}
+                  <ng-template #dropdownContent>
+                    <div class="container-column">
+                      @if (this.canMoveUp(element.id)) {
+                        <button
+                          tuiButton
+                          iconEnd="@tui.move-up"
+                          appearance="flat"
+                          type="button"
+                          (click)="onMoveUp(element.id)"
+                        >
+                          {{ t('actions.move.up') }}
+                        </button>
+                      }
+                      @if (this.canMoveDown(element.id)) {
+                        <button
+                          tuiButton
+                          iconEnd="@tui.move-down"
+                          appearance="flat"
+                          type="button"
+                          (click)="onMoveDown(element.id)"
+                        >
+                          {{ t('actions.move.down') }}
+                        </button>
+                      }
+                    </div>
+                  </ng-template>
+                </button>
               </td>
             </tr>
           }
