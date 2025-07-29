@@ -1,7 +1,7 @@
 import { Component, inject, Signal } from '@angular/core';
 import { DatePipe } from "@angular/common";
 import { TranslocoDirective } from "@jsverse/transloco";
-import { TuiButton, tuiDialog, TuiIcon } from "@taiga-ui/core";
+import { tuiDialog } from "@taiga-ui/core";
 import { TuiTableDirective, TuiTableTbody, TuiTableTd, TuiTableTh } from "@taiga-ui/addon-table";
 import { ElementsService } from '../../../shared/services/elements.service';
 import { ElementObject } from '../../../shared/models/element.interface';
@@ -12,8 +12,6 @@ import { ViewPopupComponent } from '../view-popup/view-popup.component';
   imports: [
     DatePipe,
     TranslocoDirective,
-    TuiButton,
-    TuiIcon,
     TuiTableDirective,
     TuiTableTbody,
     TuiTableTd,

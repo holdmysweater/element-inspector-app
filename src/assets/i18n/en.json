@@ -3,19 +3,14 @@
   "element": {
     "name": "Name",
     "creation-date": "Creation date",
+    "creation-date-full": "Creation date and time",
     "due-date": "Due date",
+    "due-date-full": "Due date and time",
     "description": "Description"
   },
   "pages": {
     "view": {
-      "title": "View",
-      "table": {
-        "columns": {
-          "name": "Name",
-          "creation-date": "Creation date and time",
-          "due-date": "Due date and time"
-        }
-      }
+      "title": "View"
     },
     "edit": {
       "title": "Edit",

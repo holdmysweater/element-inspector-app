@@ -4,28 +4,24 @@
   .container-centered();
   overflow: auto;
 
-  .table-buttons {
-    .container-end();
-    .gap-small();
-
-    & > :first-child {
-      background-color: @highlight-color;
+  table {
+    tr {
+      border: none !important;
+      transition: ease-in-out 0.3s;
+      height: 70px;
 
       &:hover {
-        background-color: @highlight-color-dark;
+        cursor: pointer;
+        background-color: @secondary-color-light;
       }
     }
-  }
 
-  table th:last-child,
-  table td:last-child {
-    width: 200px;
-  }
-
-  table th:nth-last-child(2),
-  table th:nth-last-child(3),
-  table td:nth-last-child(2),
-  table td:nth-last-child(3) {
-    width: 225px;
+    th:last-child,
+    th:nth-last-child(2),
+    td:last-child,
+    td:nth-last-child(2) {
+      text-align: center;
+      width: 275px;
+    }
   }
 }

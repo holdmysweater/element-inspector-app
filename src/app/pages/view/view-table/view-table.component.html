@@ -11,17 +11,16 @@
             {{ t('element.name') }}
           </th>
           <th tuiTh>
-            {{ t('element.creation-date') }}
+            {{ t('element.creation-date-full') }}
           </th>
           <th tuiTh>
-            {{ t('element.due-date') }}
+            {{ t('element.due-date-full') }}
           </th>
-          <th tuiTh></th>
         </tr>
         </thead>
         <tbody tuiTbody>
           @for (element of elements(); track element.id) {
-            <tr>
+            <tr (click)="showViewDialog(element)">
               <td tuiTd>
                 {{ element.name }}
               </td>
@@ -30,21 +29,6 @@
               </td>
               <td tuiTd>
                 {{ element.dueDate | date:'d/MM/y, HH:mm' }}
-              </td>
-              <td tuiTd>
-                <div class="table-buttons">
-                  <button
-                    tuiButton
-                    type="button"
-                    appearance="primary"
-                    (click)="showViewDialog(element)"
-                  >
-                    {{ t('actions.view') }}
-                    <tui-icon
-                      icon="@tui.eye"
-                    />
-                  </button>
-                </div>
               </td>
             </tr>
           }
