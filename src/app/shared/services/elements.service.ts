@@ -24,7 +24,7 @@ export class ElementsService {
     const creationDate = new Date();
     let dueDate = new Date(element.dueDate);
 
-    if (dueDate <= creationDate) {
+    if (!isCopy && dueDate <= creationDate) {
       console.warn('invalid dueDate -> defaulting to now');
       dueDate = new Date(creationDate.getTime() + 1000);
     }
