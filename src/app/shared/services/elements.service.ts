@@ -2,12 +2,14 @@ import { inject, Injectable, Signal, signal, WritableSignal } from '@angular/cor
 import { ElementObject, ElementObjectBase } from '../models/element.interface';
 import { ElementStorageService } from './element-storage.service';
 import { v4 as uuidv4 } from 'uuid';
+import { AlertsService } from './alerts.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ElementsService {
   private readonly storage: ElementStorageService = inject(ElementStorageService);
+  private readonly alerts: AlertsService = inject(AlertsService);
 
   private readonly _elements: WritableSignal<ElementObject[]> = signal<ElementObject[]>([]);
   public readonly elements: Signal<ElementObject[]> = this._elements.asReadonly();
@@ -18,7 +20,7 @@ export class ElementsService {
 
   // region ACTIONS
 
-  public create(element: ElementObjectBase): ElementObject {
+  public create(element: ElementObjectBase, isCopy = false): ElementObject {
     const creationDate = new Date();
     let dueDate = new Date(element.dueDate);
 
@@ -36,6 +38,14 @@ export class ElementsService {
 
     this._elements.update(elements => [...elements, newElement]);
     this.saveElements();
+
+    this.alerts.showAlert(
+      isCopy
+        ? (newElement ? 'actions.duplicate.success' : 'actions.duplicate.error')
+        : (newElement ? 'actions.create.success' : 'actions.create.error'),
+      newElement ? 'positive' : 'negative'
+    );
+
     return newElement;
   }
 
@@ -44,7 +54,7 @@ export class ElementsService {
     if (!original) return null;
 
     const { name, dueDate, description } = original;
-    return this.create({ name, dueDate, description });
+    return this.create({ name, dueDate, description }, true);
   }
 
   public delete(id: string): boolean {
@@ -54,6 +64,10 @@ export class ElementsService {
 
     if (removed) this.saveElements();
 
+    this.alerts.showAlert(
+      removed ? 'actions.delete.success' : 'actions.delete.error',
+      removed ? 'positive' : 'negative'
+    );
     return removed;
   }
 

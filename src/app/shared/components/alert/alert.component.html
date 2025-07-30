@@ -1,0 +1,17 @@
+<ng-container *transloco="let t">
+  <h5>{{ t(value.key) }}</h5>
+  @if (value.element !== null) {
+    <p>
+      <b>{{ t('element.name') }}</b>: {{ value.element.name }}
+    </p>
+    <p>
+      <b>{{ t('element.creationDate') }}</b>: {{ value.element.creationDate }}
+    </p>
+    <p>
+      <b>{{ t('element.dueDate') }}</b>: {{ value.element.dueDate }}
+    </p>
+    <p>
+      <b>{{ t('element.description') }}</b>: {{ value.element.description }}
+    </p>
+  }
+</ng-container>
