@@ -60,5 +60,8 @@
       "asc": "Ascending",
       "desc": "Descending"
     }
+  },
+  "notifications": {
+    "dueDate": "An element has reached its due date"
   }
 }

@@ -5,10 +5,10 @@
       <b>{{ t('element.name') }}</b>: {{ value.element.name }}
     </p>
     <p>
-      <b>{{ t('element.creationDate') }}</b>: {{ value.element.creationDate }}
+      <b>{{ t('element.creationDate') }}</b>: {{ value.element.creationDate | date:'dd/MM/yyyy, HH:mm' }}
     </p>
     <p>
-      <b>{{ t('element.dueDate') }}</b>: {{ value.element.dueDate }}
+      <b>{{ t('element.dueDate') }}</b>: {{ value.element.dueDate | date:'dd/MM/yyyy, HH:mm' }}
     </p>
     <p>
       <b>{{ t('element.description') }}</b>: {{ value.element.description }}

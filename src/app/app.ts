@@ -1,7 +1,8 @@
 import { TuiRoot } from "@taiga-ui/core";
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './shared/components/header/header.component';
+import { NotificationsService } from './shared/services/notifications.service';
 
 @Component({
   selector: 'app-root',
@@ -10,5 +11,5 @@ import { HeaderComponent } from './shared/components/header/header.component';
   styleUrl: './app.less',
 })
 export class App {
-
+  private readonly notifier: NotificationsService = inject(NotificationsService);
 }

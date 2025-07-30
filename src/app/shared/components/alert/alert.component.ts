@@ -4,6 +4,7 @@ import { TuiAlertOptions } from '@taiga-ui/core';
 import { TuiPopover } from '@taiga-ui/cdk';
 import { ElementObject } from '../../models/element.interface';
 import { TranslocoDirective } from '@jsverse/transloco';
+import { DatePipe } from '@angular/common';
 
 interface ElementObjectInfo {
   key: string;
@@ -13,7 +14,8 @@ interface ElementObjectInfo {
 @Component({
   selector: 'app-alert',
   imports: [
-    TranslocoDirective
+    TranslocoDirective,
+    DatePipe
   ],
   templateUrl: './alert.component.html',
   styleUrl: './alert.component.less'
