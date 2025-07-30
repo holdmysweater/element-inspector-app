@@ -42,11 +42,11 @@
                   [size]="'s'"
                   [tuiDropdown]="dropdownContent"
                   [tuiDropdownSided]="true"
-                  [tuiDropdownManual]="openStates.get(element.id) || false"
-                  [tuiObscuredEnabled]="openStates.get(element.id) || false"
+                  [tuiDropdownManual]="currentlyOpenId === element.id"
+                  [tuiObscuredEnabled]="currentlyOpenId === element.id"
                   (click)="onDropdownClick(element.id); $event.stopPropagation()"
-                  (tuiActiveZoneChange)="onActiveZone(element.id, $event)"
-                  (tuiObscured)="onObscured(element.id, $event)"
+                  (tuiActiveZoneChange)="onActiveZone($event)"
+                  (tuiObscured)="onObscured($event)"
                 >
                   {{ t('actions.move.option') }}
                   <ng-template #dropdownContent>

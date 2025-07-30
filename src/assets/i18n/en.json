@@ -37,5 +37,17 @@
   "errors": {
     "required": "This field is required",
     "not-found": "No data found"
+  },
+  "sort": {
+    "filter": "Filter",
+    "fields": {
+      "name": "By name",
+      "creationDate": "By creation date",
+      "dueDate": "By due date"
+    },
+    "direction": {
+      "asc": "Ascending",
+      "desc": "Descending"
+    }
   }
 }

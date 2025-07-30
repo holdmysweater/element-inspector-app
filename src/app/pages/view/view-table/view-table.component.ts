@@ -10,10 +10,10 @@ import {
   TuiDropdownPositionSided
 } from "@taiga-ui/core";
 import { TuiTableDirective, TuiTableTbody, TuiTableTd, TuiTableTh } from "@taiga-ui/addon-table";
-import { ElementsService } from '../../../shared/services/elements.service';
 import { ElementObject } from '../../../shared/models/element.interface';
 import { ViewPopupComponent } from '../view-popup/view-popup.component';
 import { TuiActiveZone, TuiObscured } from '@taiga-ui/cdk';
+import { ElementsFilterService } from '../../../shared/services/elements-filter.service';
 
 @Component({
   selector: 'app-view-table',
@@ -36,9 +36,9 @@ import { TuiActiveZone, TuiObscured } from '@taiga-ui/cdk';
   styleUrl: './view-table.component.less'
 })
 export class ViewTableComponent {
-  private readonly elementsService = inject(ElementsService);
+  private readonly filterService = inject(ElementsFilterService);
 
-  protected readonly elements: Signal<ElementObject[]> = this.elementsService.elements;
+  protected readonly elements: Signal<ElementObject[]> = this.filterService.elements;
 
   // region VIEW DIALOG
 
@@ -56,24 +56,22 @@ export class ViewTableComponent {
 
   // region DROPDOWN
 
-  protected openStates = new Map<string, boolean>();
+  protected currentlyOpenId: string | null = null;
 
   protected onDropdownClick(elementId: string): void {
-    this.openStates.forEach((_, key) => {
-      if (key !== elementId) this.openStates.set(key, false);
-    });
-    this.openStates.set(elementId, !this.openStates.get(elementId));
+    this.currentlyOpenId = this.currentlyOpenId === elementId ? null : elementId;
   }
 
-  protected onObscured(elementId: string, obscured: boolean): void {
+  protected onObscured(obscured: boolean): void {
     if (obscured) {
-      this.openStates.set(elementId, false);
+      this.currentlyOpenId = null;
     }
   }
 
-  protected onActiveZone(elementId: string, active: boolean): void {
-    const isOpen = this.openStates.get(elementId) || false;
-    this.openStates.set(elementId, active && isOpen);
+  protected onActiveZone(active: boolean): void {
+    if (!active) {
+      this.currentlyOpenId = null;
+    }
   }
 
   // endregion
@@ -81,21 +79,21 @@ export class ViewTableComponent {
   // region MOVE ELEMENT
 
   protected onMoveUp(elementId: string): void {
-    this.elementsService.moveUp(elementId);
+    this.filterService.moveUp(elementId);
     this.onDropdownClick(elementId);
   }
 
   protected onMoveDown(elementId: string): void {
-    this.elementsService.moveDown(elementId);
+    this.filterService.moveDown(elementId);
     this.onDropdownClick(elementId);
   }
 
   protected canMoveUp(elementId: string): boolean {
-    return this.elementsService.canMoveUp(elementId);
+    return this.filterService.canMoveUp(elementId);
   }
 
   protected canMoveDown(elementId: string): boolean {
-    return this.elementsService.canMoveDown(elementId);
+    return this.filterService.canMoveDown(elementId);
   }
 
   // endregion
