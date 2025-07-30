@@ -7,17 +7,27 @@ app-language-settings {
     text-transform: uppercase;
     gap: 16px;
 
+    --tui-text-action: @background-color;
+    --tui-text-action-hover: @background-color;
+    --tui-background-accent-1: @background-color;
+    --tui-background-accent-1-hover: @color-highlight-light;
+    --tui-text-primary-on-accent-1: @background-color;
+
     & label {
-      color: @color-secondary;
+      color: @background-color;
       font-size: @font-size;
     }
 
-    & input[data-appearance=primary] {
-      background: @color-highlight !important;
-    }
+    [tuiRadio] {
+      background-color: @color-highlight-medium;
 
-    & input[data-appearance=outline-grayscale] {
-      background: @color-highlight-lighter !important;
+      &:before {
+        background-color: @color-highlight !important;
+      }
+
+      &:hover {
+        background-color: @color-shadow-light !important;
+      }
     }
   }
 }

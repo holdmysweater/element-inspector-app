@@ -3,7 +3,7 @@
 .header-container {
   .container-space-between();
   align-items: center;
-  background-color: @color-highlight-lightest;
+  background: linear-gradient(to top, @color-highlight-darkest, @color-highlight-dark, @color-highlight);
   padding: 0 @size-padding-large;
 
   & h1 {
@@ -11,6 +11,7 @@
     width: 350px;
     margin: 0;
     padding: @size-padding-large;
+    color: @background-color;
   }
 
   & app-language-settings {

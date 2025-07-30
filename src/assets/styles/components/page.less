@@ -12,9 +12,6 @@ app-view-page {
     padding: @size-padding-large;
     border-radius: 0 0 @size-padding @size-padding;
     min-height: 0;
-    box-shadow: 0 -2px 6px 0px rgba(95, 198, 64, 0.4),
-      0 -6px 15px 0px rgba(95, 198, 64, 0.3),
-      0 -12px 30px -5px rgba(95, 198, 64, 0.2);
 
     & app-edit-table,
     & app-view-table {
@@ -24,6 +21,11 @@ app-view-page {
       overflow: hidden;
       border-radius: @size-padding-small;
       border: solid 1px @color-highlight;
+
+      & p {
+        color: @color-secondary;
+        font-size: @font-size-large;
+      }
     }
   }
 }
