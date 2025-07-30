@@ -6,8 +6,7 @@ import { ViewTableComponent } from '../view-table/view-table.component';
   imports: [
     ViewTableComponent
   ],
-  templateUrl: './view-page.component.html',
-  styleUrl: './view-page.component.less'
+  templateUrl: './view-page.component.html'
 })
 export class ViewPageComponent {
 

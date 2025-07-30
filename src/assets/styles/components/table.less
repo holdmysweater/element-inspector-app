@@ -6,6 +6,10 @@ app-view-table {
     width: 100%;
     align-self: start;
     table-layout: fixed;
+
+    tr {
+      height: 60px;
+    }
   }
 
   [tuiTable][data-size='s'] [tuiTitle] {
@@ -14,7 +18,8 @@ app-view-table {
     font-weight: normal;
   }
 
-  [tuiTh], [tuiTd] {
+  [tuiTh],
+  [tuiTd] {
     background: none;
     border-inline-start: none;
     border-inline-end: none;
@@ -28,9 +33,9 @@ app-view-table {
   [tuiTh] {
     position: sticky;
     border-top: none;
-    font-size: @font-size-normal !important;
-    background: @highlight-color-light;
-    color: @highlight-color-dark;
+    font-size: @font-size !important;
+    background: @color-highlight-lighter;
+    color: @color-highlight-darkest;
     font-weight: bold;
     padding: @size-padding @size-padding-large !important;
   }

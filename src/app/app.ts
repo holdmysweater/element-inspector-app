@@ -6,7 +6,8 @@ import { HeaderComponent } from './shared/components/header/header.component';
 @Component({
   selector: 'app-root',
   imports: [RouterOutlet, TuiRoot, HeaderComponent],
-  templateUrl: './app.html'
+  templateUrl: './app.html',
+  styleUrl: './app.less',
 })
 export class App {
 

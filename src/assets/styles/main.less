@@ -1,9 +1,10 @@
 @import "variables.less";
 @import "mixins.less";
 
+@import "./components/page.less";
 @import "./components/radio-list.less";
-@import "./components/tabs.less";
 @import "./components/table.less";
+@import "./components/tabs.less";
 
 * {
   box-sizing: border-box;
@@ -11,20 +12,20 @@
 
 [tuiAppearance] {
   &[data-appearance=primary] {
-    --t-bg: @highlight-color-dark !important;
+    --t-bg: @color-highlight-dark !important;
     transition: ease-in-out 0.3s;
 
     &:hover {
-      --t-bg: @highlight-color-darker !important;
+      --t-bg: @color-highlight-darker !important;
     }
   }
 
+  &[data-appearance=outline],
   &[data-appearance=flat] {
-    --tui-text-action: @highlight-color-darker !important;
+    --tui-text-action: @color-highlight-darkest !important;
   }
 }
 
-app-edit-page, app-view-page {
-  flex: 2;
-  min-height: 0;
+[tuiButton][data-size=s] {
+  --tui-font-text-s: 16px;
 }

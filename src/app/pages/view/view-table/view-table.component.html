@@ -37,8 +37,9 @@
                   iconEnd="@tui.chevron-right"
                   tuiDropdownAlign="right"
                   type="button"
+                  appearance="primary"
                   [disabled]="!canMoveUp(element.id) && !canMoveDown(element.id)"
-                  [size]="'m'"
+                  [size]="'s'"
                   [tuiDropdown]="dropdownContent"
                   [tuiDropdownSided]="true"
                   [tuiDropdownManual]="openStates.get(element.id) || false"
@@ -56,6 +57,7 @@
                           iconEnd="@tui.move-up"
                           appearance="flat"
                           type="button"
+                          [size]="'s'"
                           (click)="onMoveUp(element.id)"
                         >
                           {{ t('actions.move.up') }}
@@ -67,6 +69,7 @@
                           iconEnd="@tui.move-down"
                           appearance="flat"
                           type="button"
+                          [size]="'s'"
                           (click)="onMoveDown(element.id)"
                         >
                           {{ t('actions.move.down') }}
