@@ -11,9 +11,14 @@
             {{ t('element.name') }}
           </th>
           <th tuiTh>
-            {{ t('element.creation-date') }}
+            {{ t('element.creation-date-full') }}
           </th>
-          <th tuiTh></th>
+          <th tuiTh>
+            {{ t('element.due-date-full') }}
+          </th>
+          <th tuiTh>
+            
+          </th>
         </tr>
         </thead>
         <tbody tuiTbody>
@@ -24,6 +29,9 @@
               </td>
               <td tuiTd>
                 {{ element.creationDate | date:'d/MM/y, HH:mm' }}
+              </td>
+              <td tuiTd>
+                {{ element.dueDate | date:'d/MM/y, HH:mm' }}
               </td>
               <td tuiTd>
                 <div class="table-buttons">
