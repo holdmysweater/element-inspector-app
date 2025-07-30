@@ -2,10 +2,10 @@
   "title": "Element Inspector",
   "element": {
     "name": "Name",
-    "creation-date": "Creation date",
-    "creation-date-full": "Creation date and time",
-    "due-date": "Due date",
-    "due-date-full": "Due date and time",
+    "creationDate": "Creation date",
+    "creationDateFull": "Creation date and time",
+    "dueDate": "Due date",
+    "dueDateFull": "Due date and time",
     "description": "Description"
   },
   "pages": {
@@ -14,19 +14,30 @@
     },
     "edit": {
       "title": "Edit",
-      "popup-create": {
-        "title": "Create a new element",
-        "description-placeholder": "Describe the element..."
+      "popupCreate": {
+        "title": "New element",
+        "descriptionPlaceholder": "Describe the element..."
       }
     }
   },
   "actions": {
     "cancel": "Cancel",
     "close": "Close",
-    "create": "Create",
-    "save": "Save",
-    "duplicate": "Duplicate",
-    "delete": "Delete",
+    "create": {
+      "title": "Create",
+      "success": "Element created",
+      "error": "Couldn't create element"
+    },
+    "duplicate": {
+      "title": "Duplicate",
+      "success": "Element duplicated",
+      "error": "Couldn't duplicate element"
+    },
+    "delete": {
+      "title": "Delete",
+      "success": "Element deleted",
+      "error": "Couldn't delete element"
+    },
     "view": "View",
     "move": {
       "option": "Move",
@@ -36,7 +47,7 @@
   },
   "errors": {
     "required": "This field is required",
-    "not-found": "No data found"
+    "notFound": "No data found"
   },
   "sort": {
     "filter": "Filter",

@@ -1,6 +1,6 @@
 <ng-container *transloco="let t">
   <div class="dialog-container">
-    <h2>{{ t('pages.edit.popup-create.title') }}</h2>
+    <h2>{{ t('pages.edit.popupCreate.title') }}</h2>
 
     <form
       [formGroup]="elementBaseForm"
@@ -30,7 +30,7 @@
 
           <div class="container-column">
             <tui-textfield>
-              <label tuiLabel>{{ t('element.due-date-full') }}</label>
+              <label tuiLabel>{{ t('element.dueDateFull') }}</label>
               <input
                 tuiInputDateTime
                 formControlName="dueDate"
@@ -48,7 +48,7 @@
             <tui-textfield>
               <label tuiLabel>{{ t('element.description') }}</label>
               <textarea
-                placeholder="{{ t('pages.edit.popup-create.description-placeholder') }}"
+                placeholder="{{ t('pages.edit.popupCreate.descriptionPlaceholder') }}"
                 tuiTextarea
                 formControlName="description"
               ></textarea>
@@ -78,7 +78,7 @@
             appearance="primary"
             tuiButton
           >
-            {{ t('actions.create') }}
+            {{ t('actions.create.title') }}
           </button>
         </div>
       </div>

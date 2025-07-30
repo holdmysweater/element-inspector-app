@@ -11,13 +11,13 @@
             {{ t('element.name') }}
           </th>
           <th tuiTh>
-            {{ t('element.creation-date-full') }}
+            {{ t('element.creationDateFull') }}
           </th>
           <th tuiTh>
-            {{ t('element.due-date-full') }}
+            {{ t('element.dueDateFull') }}
           </th>
           <th tuiTh>
-            
+
           </th>
         </tr>
         </thead>
@@ -41,7 +41,7 @@
                     appearance="primary"
                     (click)="onDuplicate(element.id)"
                   >
-                    {{ t('actions.duplicate') }}
+                    {{ t('actions.duplicate.title') }}
                     <tui-icon
                       icon="@tui.copy"
                     />
@@ -52,7 +52,7 @@
                     appearance="accent"
                     (click)="onDelete(element.id)"
                   >
-                    {{ t('actions.delete') }}
+                    {{ t('actions.delete.title') }}
                     <tui-icon
                       icon="@tui.trash"
                     />
@@ -64,7 +64,7 @@
         </tbody>
       </table>
     } @else {
-      <p>{{ t('errors.not-found') }}</p>
+      <p>{{ t('errors.notFound') }}</p>
     }
   </div>
 </ng-container>
