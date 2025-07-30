@@ -5,6 +5,7 @@
     "creationDate": "Creation date",
     "creationDateFull": "Creation date and time",
     "dueDate": "Due date",
+    "dueTime": "Due time",
     "dueDateFull": "Due date and time",
     "description": "Description"
   },
@@ -46,8 +47,9 @@
     }
   },
   "errors": {
-    "required": "This field is required",
-    "notFound": "No data found"
+    "required": "The field '{{field}}' cannot be empty",
+    "notFound": "No data found",
+    "futureDateTime": "Due date can't be earlier than the current date and time"
   },
   "sort": {
     "filter": "Filter",

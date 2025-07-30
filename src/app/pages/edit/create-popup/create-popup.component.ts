@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal, WritableSignal } from '@angular/core';
 import {
   TuiButton,
   TuiDialogContext,
@@ -10,12 +10,20 @@ import {
 } from '@taiga-ui/core';
 import { ElementObjectBase } from '../../../shared/models/element.interface';
 import { injectContext } from "@taiga-ui/polymorpheus";
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  ValidationErrors,
+  ValidatorFn,
+  Validators
+} from '@angular/forms';
 import {
   TuiFieldErrorPipe,
   TuiInputDate,
-  TuiInputDateTimeDirective,
   tuiInputDateTimeOptionsProvider,
+  TuiInputTimeDirective,
   TuiTextarea
 } from '@taiga-ui/kit';
 import { TranslocoDirective } from '@jsverse/transloco';
@@ -29,7 +37,6 @@ import { AsyncPipe } from '@angular/common';
     TuiTextfieldComponent,
     TuiTextfieldDirective,
     TuiLabel,
-    TuiInputDateTimeDirective,
     TuiInputDate,
     TuiTextfieldDropdownDirective,
     TuiTextarea,
@@ -37,7 +44,8 @@ import { AsyncPipe } from '@angular/common';
     TranslocoDirective,
     TuiError,
     TuiFieldErrorPipe,
-    AsyncPipe
+    AsyncPipe,
+    TuiInputTimeDirective
   ],
   templateUrl: './create-popup.component.html',
   providers: [
@@ -65,6 +73,14 @@ import { AsyncPipe } from '@angular/common';
   ],
 })
 export class CreatePopupComponent {
+  private now: WritableSignal<Date> = signal<Date>(new Date());
+
+  constructor() {
+    this.elementBaseForm.valueChanges.subscribe(() => {
+      this.now.set(new Date());
+    });
+  }
+
   // region DIALOG
 
   public readonly context: TuiDialogContext<ElementObjectBase | null, void> = injectContext();
@@ -74,14 +90,59 @@ export class CreatePopupComponent {
   }
 
   protected onSubmit(): void {
-    if (this.elementBaseForm.invalid) return;
+    this.elementBaseForm.updateValueAndValidity();
+
+    if (this.elementBaseForm.invalid) {
+      this.elementBaseForm.markAllAsTouched();
+      return;
+    }
+
+    const date = this.elementBaseForm.value.dueDate as TuiDay;
+    const time = this.elementBaseForm.value.dueTime as TuiTime;
+
+    const dueDate = new Date(
+      date.year,
+      date.month,
+      date.day,
+      time.hours,
+      time.minutes
+    );
 
     this.context.completeWith({
       name: this.elementBaseForm.value.name!,
-      dueDate: this.elementBaseForm.value.dueDate!,
+      dueDate: dueDate,
       description: this.elementBaseForm.value.description!
     });
   }
+
+  // endregion
+
+  // region VALIDATION
+
+  protected readonly minDate: TuiDay = TuiDay.currentLocal();
+
+  private futureDateTimeValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
+    const group = control as FormGroup;
+    const date = group.get('dueDate')?.value as TuiDay;
+    const time = group.get('dueTime')?.value as TuiTime;
+
+    if (!date || !time) return null;
+
+    const dueDate = new Date(
+      date.year,
+      date.month,
+      date.day,
+      time.hours,
+      time.minutes
+    );
+
+    dueDate.setSeconds(0, 0);
+
+    const now: Date = this.now();
+    now.setSeconds(0, 0);
+
+    return dueDate >= now ? null : { pastDateTime: true };
+  };
 
   // endregion
 
@@ -89,15 +150,10 @@ export class CreatePopupComponent {
 
   protected readonly elementBaseForm = new FormGroup({
     name: new FormControl<string | null>(null, Validators.required),
-    dueDate: new FormControl<Date | null>(null, Validators.required),
+    dueDate: new FormControl<TuiDay | null>(null, Validators.required),
+    dueTime: new FormControl<TuiTime | null>(null, Validators.required),
     description: new FormControl<string | null>(null, Validators.required)
-  });
-
-  // endregion
-
-  // region VALIDATION
-
-  protected readonly minDate: [TuiDay, TuiTime | null] = [TuiDay.currentLocal(), TuiTime.currentLocal()];
+  }, { validators: [this.futureDateTimeValidator.bind(this)] as ValidatorFn[] });
 
   // endregion
 }

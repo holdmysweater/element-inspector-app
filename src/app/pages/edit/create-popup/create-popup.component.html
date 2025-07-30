@@ -24,23 +24,45 @@
             </tui-textfield>
             <tui-error
               formControlName="name"
-              [error]="[] | tuiFieldError | async"
+              [error]="([] | tuiFieldError | async) ? t('errors.required', { field: t('element.name') }) : null"
             />
           </div>
 
           <div class="container-column">
-            <tui-textfield>
-              <label tuiLabel>{{ t('element.dueDateFull') }}</label>
-              <input
-                tuiInputDateTime
-                formControlName="dueDate"
-                [min]="this.minDate"
-              />
-              <tui-calendar *tuiTextfieldDropdown/>
-            </tui-textfield>
+            <div class="container-space-between gap">
+              <div class="container-column">
+                <tui-textfield>
+                  <label tuiLabel>{{ t('element.dueDate') }}</label>
+                  <input
+                    tuiInputDate
+                    formControlName="dueDate"
+                    [min]="minDate"
+                  />
+                  <tui-calendar *tuiTextfieldDropdown/>
+                </tui-textfield>
+              </div>
+
+              <div class="container-column">
+                <tui-textfield>
+                  <label tuiLabel>{{ t('element.dueTime') }}</label>
+                  <input
+                    formControlName="dueTime"
+                    tuiInputTime
+                  />
+                </tui-textfield>
+              </div>
+            </div>
+
+            <tui-error
+              [error]="elementBaseForm.hasError('pastDateTime') ? t('errors.futureDateTime') : null"
+            />
             <tui-error
               formControlName="dueDate"
-              [error]="[] | tuiFieldError | async"
+              [error]="([] | tuiFieldError | async) ? t('errors.required', { field: t('element.dueDate') }) : null"
+            />
+            <tui-error
+              formControlName="dueTime"
+              [error]="([] | tuiFieldError | async) ? t('errors.required', { field: t('element.dueTime') }) : null"
             />
           </div>
 
@@ -55,7 +77,7 @@
             </tui-textfield>
             <tui-error
               formControlName="description"
-              [error]="[] | tuiFieldError | async"
+              [error]="([] | tuiFieldError | async) ? t('errors.required', { field: t('element.description') }) : null"
             />
           </div>
         </div>
