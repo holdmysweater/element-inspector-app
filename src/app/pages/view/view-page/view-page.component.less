@@ -1,0 +1,23 @@
+@import "../../../../assets/styles/mixins.less";
+
+.filter-container {
+  .container-centered();
+  .gap();
+  width: @width-large;
+  margin: 0 auto @size-padding-large;
+  flex: 0;
+
+  & button {
+    width: @width-medium;
+    box-shadow: @shadow-small;
+  }
+
+  & tui-textfield {
+    flex: 1;
+  }
+
+  & input,
+  button {
+    font-size: @font-size !important;
+  }
+}

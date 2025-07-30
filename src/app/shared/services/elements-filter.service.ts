@@ -1,7 +1,7 @@
 import { inject, Injectable, Signal, signal, WritableSignal } from '@angular/core';
 import { ElementObject } from '../models/element.interface';
 import { ElementStorageService } from './element-storage.service';
-import { SortDirection, SortField } from '../models/filter-options.enum';
+import { SortDirection, SortDirectionIconsByField, SortField, SortFieldIcons } from '../models/filter-options.enum';
 
 @Injectable()
 export class ElementsFilterService {
@@ -27,6 +27,10 @@ export class ElementsFilterService {
     this.updateElements();
   }
 
+  public getFieldIcon(field: SortField): string {
+    return SortFieldIcons[field];
+  }
+
   // endregion
 
   // region DIRECTION
@@ -38,6 +42,18 @@ export class ElementsFilterService {
   public setDirection(direction: SortDirection): void {
     this._sortDirection.set(direction);
     this.updateElements();
+  }
+
+  public switchDirection(): void {
+    this.setDirection(
+      this.sortDirection() === SortDirection.Asc
+        ? SortDirection.Desc
+        : SortDirection.Asc
+    );
+  }
+
+  public getDirectionIcon(): string {
+    return SortDirectionIconsByField[this.sortField()][this.sortDirection()];
   }
 
   // endregion

@@ -1,3 +1,51 @@
-<div class="page-container">
-  <app-view-table/>
-</div>
+<ng-container *transloco="let t">
+  <div class="page-container">
+    <div class="filter-container">
+      <tui-textfield
+        tuiChevron
+        iconStart="@tui.{{ getCurrentDropdownIcon() }}"
+        [tuiTextfieldCleaner]="false"
+        [tuiTextfieldSize]="'m'"
+        [stringify]="stringify"
+      >
+        <input
+          tuiSelect
+          [formControl]="sortFieldControl"
+        />
+
+        <tui-data-list *tuiTextfieldDropdown>
+          @for (item of items; track item.field) {
+            <button
+              new
+              tuiOption
+              type="button"
+              [value]="item.field"
+            >
+              <tui-icon
+                icon="@tui.{{ getDropdownIcon(item.field) }}"
+              />
+              {{ item.translationKey() }}
+            </button>
+          }
+        </tui-data-list>
+      </tui-textfield>
+      <button
+        size="m"
+        tuiButton
+        type="button"
+        appearance="accent"
+        (click)="onButtonClick()"
+      >
+        @if (isAscending()) {
+          {{ t('sort.direction.asc') }}
+        } @else {
+          {{ t('sort.direction.desc') }}
+        }
+        <tui-icon
+          icon="@tui.{{ getButtonIcon() }}"
+        />
+      </button>
+    </div>
+    <app-view-table/>
+  </div>
+</ng-container>
