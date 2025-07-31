@@ -8,7 +8,7 @@ import { take } from 'rxjs';
 export class InternationalizationService {
   private readonly translocoService: TranslocoService = inject(TranslocoService);
 
-  public readonly languageOptions: readonly [string, string] = ['ru', 'en'] as const;
+  public readonly languageOptions: readonly string[] = ['ru', 'en'] as const;
 
   private readonly _language: WritableSignal<string> = signal(
     this.languageOptions.includes(localStorage.getItem('lang') as any)

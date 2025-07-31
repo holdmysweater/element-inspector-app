@@ -46,11 +46,12 @@ interface SortFieldData {
   ]
 })
 export class ViewPageComponent {
-  private readonly filterService = inject(ElementsFilterService);
+  private readonly filterService: ElementsFilterService = inject(ElementsFilterService);
 
   protected readonly sortFieldControl: FormControl<SortField | null> = new FormControl<SortField | null>(SortField.CreationDate);
 
   constructor() {
+    // Update filter field - Input to Service
     this.sortFieldControl.valueChanges.subscribe((value: SortField | null) => {
       if (value === null) return;
       this.filterService.setField(value);
@@ -59,7 +60,7 @@ export class ViewPageComponent {
 
   // region BUTTON
 
-  protected readonly isAscending = computed(() => {
+  protected readonly isAscending: Signal<boolean> = computed(() => {
     return this.filterService.sortDirection() === SortDirection.Asc;
   });
 

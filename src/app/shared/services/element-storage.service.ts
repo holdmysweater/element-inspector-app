@@ -5,7 +5,7 @@ import { ElementObject } from '../models/element.interface';
   providedIn: 'root'
 })
 export class ElementStorageService {
-  private readonly storageKey = 'elements_data';
+  private readonly storageKey: string = 'elements_data';
 
   public saveAll(elements: ElementObject[]): void {
     const serializedElements = elements.map(element => ({
@@ -33,6 +33,8 @@ export class ElementStorageService {
     }
   }
 
+  // region DATE CONVERSIONS
+
   private convertDateToISO(date: Date | string): string {
     const dateObj = date instanceof Date ? date : new Date(date);
     return dateObj.toISOString();
@@ -41,4 +43,6 @@ export class ElementStorageService {
   private parseISOToDate(isoString: string): Date {
     return new Date(isoString);
   }
+
+  // endregion
 }

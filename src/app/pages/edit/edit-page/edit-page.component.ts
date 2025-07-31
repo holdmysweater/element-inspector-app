@@ -18,7 +18,7 @@ import { ElementObjectBase } from '../../../shared/models/element.interface';
   styleUrl: './edit-page.component.less'
 })
 export class EditPageComponent {
-  private readonly elementsService = inject(ElementsService);
+  private readonly elementsService: ElementsService = inject(ElementsService);
 
   // region FORM DIALOG
 

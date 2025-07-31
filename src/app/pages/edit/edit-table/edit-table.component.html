@@ -10,29 +10,34 @@
           <th tuiTh>
             {{ t('element.name') }}
           </th>
+
           <th tuiTh>
             {{ t('element.creationDateFull') }}
           </th>
+
           <th tuiTh>
             {{ t('element.dueDateFull') }}
           </th>
-          <th tuiTh>
 
-          </th>
+          <th tuiTh></th>
         </tr>
         </thead>
+
         <tbody tuiTbody>
           @for (element of elements(); track element.id) {
             <tr>
               <td tuiTd>
                 {{ element.name }}
               </td>
+
               <td tuiTd>
                 {{ element.creationDate | date:'dd/MM/yyyy, HH:mm' }}
               </td>
+
               <td tuiTd>
                 {{ element.dueDate | date:'dd/MM/yyyy, HH:mm' }}
               </td>
+
               <td tuiTd>
                 <div class="table-buttons">
                   <button
@@ -46,6 +51,7 @@
                       icon="@tui.copy"
                     />
                   </button>
+
                   <button
                     tuiButton
                     type="button"

@@ -17,11 +17,10 @@ interface ElementObjectInfo {
     TranslocoDirective,
     DatePipe
   ],
-  templateUrl: './alert.component.html',
-  styleUrl: './alert.component.less'
+  templateUrl: './alert.component.html'
 })
 export class AlertComponent {
   protected readonly context = injectContext<TuiPopover<TuiAlertOptions<ElementObjectInfo>, void>>();
 
-  protected value: ElementObjectInfo = this.context.data;
+  protected readonly value: ElementObjectInfo = this.context.data;
 }

@@ -1,14 +1,25 @@
 @import "../assets/styles/mixins.less";
 
-.card {
-  .container-space-between();
-  background: @background-color;
-  border: 1px solid @color-highlight-darkest;
-  flex-direction: column;
-  align-items: stretch;
+.wrapper-container {
   margin: auto;
-  height: 90vh;
-  box-shadow: @shadow;
-  border-radius: 10px;
-  overflow: hidden;
+  max-width: @width-max;
+  min-height: 0;
+  height: @height-max;
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  box-sizing: border-box;
+
+  .app-card {
+    .container-space-between();
+    background: @background-color;
+    border: @border-width solid @color-highlight-darker;
+    flex-direction: column;
+    align-items: stretch;
+    margin: auto;
+    height: 90vh;
+    box-shadow: @shadow;
+    border-radius: @border-radius;
+    overflow: hidden;
+  }
 }

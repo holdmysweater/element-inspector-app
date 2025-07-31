@@ -2,13 +2,12 @@
 
 .page-container {
   & button {
-    width: @width-large;
+    --tui-background-accent-1: @color-green-light;
+    --tui-background-accent-1-hover: @color-green;
+    --tui-background-accent-1-pressed: @color-green-dark;
+
+    width: @width-xl;
     margin: 0 auto @size-padding-large;
     box-shadow: @shadow-small;
-
-    --tui-background-accent-1: #00b100;
-    --tui-background-accent-1-hover: green;
-    --tui-background-accent-1-pressed: #004500;
-
   }
 }

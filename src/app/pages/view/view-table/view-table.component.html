@@ -10,14 +10,18 @@
           <th tuiTh>
             {{ t('element.name') }}
           </th>
+
           <th tuiTh>
             {{ t('element.creationDateFull') }}
           </th>
+
           <th tuiTh>
             {{ t('element.dueDateFull') }}
           </th>
+
           <th tuiTh></th>
         </tr>
+
         </thead>
         <tbody tuiTbody>
           @for (element of elements(); track element.id) {
@@ -25,12 +29,15 @@
               <td tuiTd>
                 {{ element.name }}
               </td>
+
               <td tuiTd>
                 {{ element.creationDate | date:'dd/MM/yyyy, HH:mm' }}
               </td>
+
               <td tuiTd>
                 {{ element.dueDate | date:'dd/MM/yyyy, HH:mm' }}
               </td>
+
               <td tuiTd>
                 <button
                   tuiButton
@@ -51,7 +58,7 @@
                   {{ t('actions.move.option') }}
                   <ng-template #dropdownContent>
                     <div class="container-column">
-                      @if (this.canMoveUp(element.id)) {
+                      @if (canMoveUp(element.id)) {
                         <button
                           tuiButton
                           iconEnd="@tui.move-up"
@@ -63,7 +70,7 @@
                           {{ t('actions.move.up') }}
                         </button>
                       }
-                      @if (this.canMoveDown(element.id)) {
+                      @if (canMoveDown(element.id)) {
                         <button
                           tuiButton
                           iconEnd="@tui.move-down"

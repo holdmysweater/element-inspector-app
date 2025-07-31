@@ -36,7 +36,7 @@ import { ElementsFilterService } from '../../../shared/services/elements-filter.
   styleUrl: './view-table.component.less'
 })
 export class ViewTableComponent {
-  private readonly filterService = inject(ElementsFilterService);
+  private readonly filterService: ElementsFilterService = inject(ElementsFilterService);
 
   protected readonly elements: Signal<ElementObject[]> = this.filterService.elements;
 

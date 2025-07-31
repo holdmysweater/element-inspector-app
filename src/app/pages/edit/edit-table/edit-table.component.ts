@@ -22,7 +22,7 @@ import { DatePipe } from '@angular/common';
   styleUrl: './edit-table.component.less'
 })
 export class EditTableComponent {
-  private readonly elementsService = inject(ElementsService);
+  private readonly elementsService: ElementsService = inject(ElementsService);
 
   protected readonly elements: Signal<ElementObject[]> = this.elementsService.elements;
 

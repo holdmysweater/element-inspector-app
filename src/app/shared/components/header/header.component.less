@@ -3,12 +3,12 @@
 .header-container {
   .container-space-between();
   align-items: center;
-  background: linear-gradient(to top, @color-highlight-darkest, @color-highlight-dark, @color-highlight);
+  background: linear-gradient(to top, @color-highlight-darker, @color-highlight-dark, @color-highlight);
   padding: 0 @size-padding-large;
 
   & h1 {
     .container-centered();
-    width: 350px;
+    width: @width-l;
     margin: 0;
     padding: @size-padding-large;
     color: @background-color;
@@ -16,12 +16,12 @@
 
   & app-language-settings {
     .container-end();
-    width: 350px;
+    width: @width-l;
     padding: 0 @size-padding-large;
   }
 
   & app-nav-tabs {
-    width: 350px;
+    width: @width-l;
     align-self: end;
   }
 }

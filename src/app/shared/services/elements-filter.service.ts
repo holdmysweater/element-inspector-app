@@ -18,9 +18,9 @@ export class ElementsFilterService {
 
   // region FIELD
 
-  private readonly _sortField = signal<SortField>(SortField.CreationDate);
+  private readonly _sortField: WritableSignal<SortField> = signal<SortField>(SortField.CreationDate);
 
-  public readonly sortField = this._sortField.asReadonly();
+  public readonly sortField: Signal<SortField> = this._sortField.asReadonly();
 
   public setField(field: SortField): void {
     this._sortField.set(field);
@@ -35,9 +35,9 @@ export class ElementsFilterService {
 
   // region DIRECTION
 
-  private readonly _sortDirection = signal<SortDirection>(SortDirection.Asc);
+  private readonly _sortDirection: WritableSignal<SortDirection> = signal<SortDirection>(SortDirection.Asc);
 
-  public readonly sortDirection = this._sortDirection.asReadonly();
+  public readonly sortDirection: Signal<SortDirection> = this._sortDirection.asReadonly();
 
   public setDirection(direction: SortDirection): void {
     this._sortDirection.set(direction);
@@ -63,13 +63,13 @@ export class ElementsFilterService {
   // region MOVE UP/DOWN
 
   public moveUp(id: string): boolean {
-    const elements = this._elements();
-    const index = elements.findIndex(el => el.id === id);
+    const elements: ElementObject[] = this._elements();
+    const index: number = elements.findIndex(el => el.id === id);
 
     if (index <= 0) return false;
 
     this._elements.update(current => {
-      const updated = [...current];
+      const updated: ElementObject[] = [...current];
       [updated[index - 1], updated[index]] = [updated[index], updated[index - 1]];
       return updated;
     });
@@ -78,13 +78,13 @@ export class ElementsFilterService {
   }
 
   public moveDown(id: string): boolean {
-    const elements = this._elements();
-    const index = elements.findIndex(el => el.id === id);
+    const elements: ElementObject[] = this._elements();
+    const index: number = elements.findIndex(el => el.id === id);
 
     if (index === -1 || index >= elements.length - 1) return false;
 
     this._elements.update(current => {
-      const updated = [...current];
+      const updated: ElementObject[] = [...current];
       [updated[index], updated[index + 1]] = [updated[index + 1], updated[index]];
       return updated;
     });
@@ -93,12 +93,11 @@ export class ElementsFilterService {
   }
 
   public canMoveUp(id: string): boolean {
-    const index = this._elements().findIndex(el => el.id === id);
-    return index > 0;
+    return this.elements().findIndex(el => el.id === id) > 0;
   }
 
   public canMoveDown(id: string): boolean {
-    const elements = this._elements();
+    const elements = this.elements();
     const index = elements.findIndex(el => el.id === id);
     return index >= 0 && index < elements.length - 1;
   }

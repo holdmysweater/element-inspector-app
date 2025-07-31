@@ -8,14 +8,17 @@ import { ElementObject } from '../models/element.interface';
   providedIn: 'root'
 })
 export class AlertsService {
-  private readonly alerts = inject(TuiAlertService);
+  private readonly alerts: TuiAlertService = inject(TuiAlertService);
 
   // region ALERT
 
   public showAlert(msgKey: string, appearance: string, contentKey: ElementObject | null = null, autoClose = 3000): void {
     this.alerts
       .open(new PolymorpheusComponent(AlertComponent), {
-        data: { key: msgKey, element: contentKey },
+        data: {
+          key: msgKey,
+          element: contentKey
+        },
         appearance,
         autoClose
       })

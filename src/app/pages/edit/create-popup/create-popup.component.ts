@@ -51,31 +51,27 @@ import { AsyncPipe } from '@angular/common';
   providers: [
     tuiInputDateTimeOptionsProvider({
       valueTransformer: {
-        fromControlValue: (value: Date | null): [TuiDay, TuiTime | null] | null => {
-          if (!value) return null;
-
-          return [
-            new TuiDay(value.getFullYear(), value.getMonth(), value.getDate()),
-            new TuiTime(value.getHours(), value.getMinutes())
-          ];
-        },
+        fromControlValue: (value: Date | null): [TuiDay, TuiTime | null] | null =>
+          !value
+            ? null
+            : [
+              new TuiDay(value.getFullYear(), value.getMonth(), value.getDate()),
+              new TuiTime(value.getHours(), value.getMinutes())
+            ],
         toControlValue: (value: [TuiDay, TuiTime | null] | null): Date | null => {
           if (!value?.[0]) return null;
-
           const [day, time] = value;
-          const hours = time?.hours || 0;
-          const minutes = time?.minutes || 0;
-
-          return new Date(day.year, day.month, day.day, hours, minutes);
+          return new Date(day.year, day.month, day.day, time?.hours || 0, time?.minutes || 0);
         }
       },
     }),
   ],
 })
 export class CreatePopupComponent {
-  private now: WritableSignal<Date> = signal<Date>(new Date());
+  private readonly now: WritableSignal<Date> = signal<Date>(new Date());
 
   constructor() {
+    // Update current time on value changes
     this.elementBaseForm.valueChanges.subscribe(() => {
       this.now.set(new Date());
     });
@@ -128,14 +124,7 @@ export class CreatePopupComponent {
 
     if (!date || !time) return null;
 
-    const dueDate = new Date(
-      date.year,
-      date.month,
-      date.day,
-      time.hours,
-      time.minutes
-    );
-
+    const dueDate = new Date(date.year, date.month, date.day, time.hours, time.minutes);
     dueDate.setSeconds(0, 0);
 
     const now: Date = this.now();

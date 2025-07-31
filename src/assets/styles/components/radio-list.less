@@ -2,16 +2,16 @@
 
 app-language-settings {
   tui-radio-list {
+    --tui-text-action: @background-color;
+    --tui-text-action-hover: @background-color;
+    --tui-background-accent-1: @background-color;
+    --tui-background-accent-1-hover: @color-highlight-lighter;
+    --tui-text-primary-on-accent-1: @background-color;
+
     flex-direction: row !important;
     width: max-content;
     text-transform: uppercase;
     gap: 16px;
-
-    --tui-text-action: @background-color;
-    --tui-text-action-hover: @background-color;
-    --tui-background-accent-1: @background-color;
-    --tui-background-accent-1-hover: @color-highlight-light;
-    --tui-text-primary-on-accent-1: @background-color;
 
     & label {
       color: @background-color;
@@ -19,14 +19,14 @@ app-language-settings {
     }
 
     [tuiRadio] {
-      background-color: @color-highlight-medium;
+      background-color: @color-highlight-light;
 
       &:before {
         background-color: @color-highlight !important;
       }
 
       &:hover {
-        background-color: @color-shadow-light !important;
+        background-color: @color-shadow !important;
       }
     }
   }
